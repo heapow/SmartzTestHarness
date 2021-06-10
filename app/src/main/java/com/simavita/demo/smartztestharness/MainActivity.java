@@ -59,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void calculatePPM(DataAcquisition.DataHandler data) {
                 Log.d("TestAct PPM", Double.toString(data.GetMinPPM())+ " | " + Double.toString(data.GetMaxPPM()));
+                double ppm1 = data.GetPPM("Smartz_Pod_44444444");
+                double ppm2 = data.GetPPM("44:44:44:44");
+                double minPPM = data.GetMinPPM();
+                double maxPPM = data.GetMaxPPM();
             }
 
             @Override
@@ -99,6 +103,14 @@ public class MainActivity extends AppCompatActivity {
     public void podBleDataTest(View view) {
         DataAcquisition.start();
 //        startActivity(new Intent(this, PodTestActivity.class));
+    }
+    public void demos() {
+        DataAcquisition acquisition = DataAcquisition.getInstance();
+        boolean bleStatus = DataAcquisition.isBleOn();
+        double ppm1 = DataAcquisition.getInstance().GetPPM("Smartz_Pod_44444444");
+        double ppm2 = DataAcquisition.getInstance().GetPPM("44:44:44:44");
+        double minPPM = DataAcquisition.getInstance().GetMinPPM();
+        double maxPPM = DataAcquisition.getInstance().GetMaxPPM();
     }
 
 }
