@@ -58,13 +58,14 @@ public class MainActivity extends AppCompatActivity {
         DataAcquisition.addCallback(new DataAcquisition.Callback(){
             @Override
             public void calculatePPM(DataAcquisition.DataHandler data) {
-                Log.d("TestAct PPM", Double.toString(data.GetPPM()));
+                Log.d("TestAct PPM", Double.toString(data.GetMinPPM())+ " | " + Double.toString(data.GetMaxPPM()));
             }
 
             @Override
-            public void onLeScan(DataInfo data, BluetoothDevice device, int rssi, byte[] scanRecord) {
+            public void onLeScan(String data, BluetoothDevice device, int rssi, byte[] scanRecord) {
                 Log.d("DataInfo", data.toString());
-                analyticsPanel.showDataInfo(data);
+                DataInfo info = DataAnalytics.smartzsdk.processdata(scanRecord, DataAnalytics.getDefaultDataInfo());
+                analyticsPanel.showDataInfo(info);
             }
         });
         Log.d("Tag", "initDataAcquisition");

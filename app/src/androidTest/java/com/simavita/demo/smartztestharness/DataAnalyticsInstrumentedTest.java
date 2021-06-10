@@ -18,8 +18,10 @@ import static org.junit.Assert.assertEquals;
 public class DataAnalyticsInstrumentedTest {
     @Test
     public void processdata() {
-        DataInfo info = DataAnalytics.smartzsdk.processdata("1EFFB0A0F2DE3C14209E2DAAEAE9BD17C098BED8FFDE1DC11E52D4265A09061809536D6172747A5F506F645F46343930434244303035354305FFCDAB0100".getBytes(),
-                DataAnalytics.getDefaultDataInfo());
+        byte[] data = DataAnalytics.hexStringToByteArray("1EFFB0A0F2DE3C14209E2DAAEAE9BD17C098BED8FFDE1DC11E52D4265A09061809536D6172747A5F506F645F46343930434244303035354305FFCDAB0100");
+        DataInfo previousDatainfo = DataAnalytics.getDefaultDataInfo();
+        DataInfo info = DataAnalytics.smartzsdk.processdata(data,
+                previousDatainfo);
 
     }
     @Test
